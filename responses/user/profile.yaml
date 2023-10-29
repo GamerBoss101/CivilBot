@@ -1,0 +1,9 @@
+color: "Blue"
+author:
+  name: "Citizen Card"
+description: "**Name: `{name}`** \n**Age: `{age}`** \n\n**Bio:**\n**```\n{bio}\n```**"
+thumbnail: "{avatar}"
+fields: 
+  - { name: "Job", value: "{job}", inline: false }
+  - { name: "Education", value: "{education}", inline: false }
+timestamp: true

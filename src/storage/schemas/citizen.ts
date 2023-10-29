@@ -7,14 +7,26 @@ const reqString = {
 
 const citizenSchema = new mongoose.Schema({
     _id: reqString,
-    age: Number,
+    bio: String,
+    age: {
+        type: Number,
+        default: 13
+    },
     gender: String,
-    job: String,
+    job: {
+        type: String,
+        default: "Unemployed"
+    },
     religion: String,
     family: {
         type: Array,
         default: []
     },
+    education: {
+        type: Number,
+        default: 0
+    }, 
+    partner: String,
     bank: {
         wallet: {
             type: Number,
@@ -49,7 +61,9 @@ export default class Citizen {
 
     async get(id: string): Promise<CitizenData> {
         if(!id) return await this.model.find({});
-        return await this.model.findOne({ _id: id });
+        let data = await this.model.findOne({ _id: id });
+        if (!data) return await this.create(id);
+        return data;
     }
 
     async update(id: string, data: any): Promise<CitizenData | any> {

@@ -7,6 +7,10 @@ const reqString = {
 
 const societySchema = new mongoose.Schema({
     _id: reqString,
+    config: {  
+        joinMessage: String,
+    },
+    leader: String,
     government: reqString,
     laws: Array<String>,
     jobs: Array<Object>,

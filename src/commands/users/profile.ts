@@ -17,10 +17,18 @@ export default class ProfileCommand extends BotCommand {
         let citizenData = await client.storage.citizen.get(target.id);
 
         let obj = {
-            name: target.username,
+            name: target.displayName,
             avatar: target.avatarURL(),
-            
+            health: citizenData.health,
+            education: citizenData.education,
+            job: citizenData.job,
+            age: citizenData.age,
+            bio: citizenData.bio
         }
+
+        let embed = client.util.buildEmbed(client.formatter.format('./responses/user/profile.yaml', obj));
+
+        await interaction.reply({ embeds: [embed], ephemeral: true });
 
     }
 
